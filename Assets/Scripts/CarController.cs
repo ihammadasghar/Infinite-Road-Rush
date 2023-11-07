@@ -8,6 +8,7 @@ public class CarController : MonoBehaviour
     private float horizontalInput, verticalInput;
     private float currentSteerAngle, currentbreakForce;
     private bool isBreaking;
+    public SpawnManager spawnManager;
 
     // Settings
     [SerializeField] private float motorForce, breakForce, maxSteerAngle;
@@ -71,5 +72,9 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
+    }
+
+    public void OnTriggerEnter(Collider other){
+        spawnManager.SpawnTriggerEntered();
     }
 }
