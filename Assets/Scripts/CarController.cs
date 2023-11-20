@@ -1,77 +1,90 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    private float horizontalInput, verticalInput;
-    private float currentSteerAngle, currentbreakForce;
-    private bool isBreaking;
+    public float maxSpeed = 120f;            // Maximum speed of the car
+    public float acceleration = 5f;         // Acceleration of the car
+    public float deceleration = 5f;         // Deceleration (negative acceleration) of the car
+    public float brakeForce = 40f;          // Braking force
+    public float turnSpeed = 10f;            // Speed of turning
     public SpawnManager spawnManager;
 
-    // Settings
-    [SerializeField] private float motorForce, breakForce, maxSteerAngle;
+    private float currentSpeed = 0f;
 
-    // Wheel Colliders
-    [SerializeField] private WheelCollider frontLeftWheelCollider, frontRightWheelCollider;
-    [SerializeField] private WheelCollider rearLeftWheelCollider, rearRightWheelCollider;
-
-    // Wheels
-    [SerializeField] private Transform frontLeftWheelTransform, frontRightWheelTransform;
-    [SerializeField] private Transform rearLeftWheelTransform, rearRightWheelTransform;
-
-    private void FixedUpdate() {
-        GetInput();
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
+    void Update()
+    {
+        HandleInput();
     }
 
-    private void GetInput() {
-        // Steering Input
-        horizontalInput = Input.GetAxis("Horizontal");
-
-        // Acceleration Input
-        verticalInput = Input.GetAxis("Vertical");
-
-        // Breaking Input
-        isBreaking = Input.GetKey(KeyCode.Space);
+    void FixedUpdate()
+    {
+        MoveCar();
     }
 
-    private void HandleMotor() {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
-        ApplyBreaking();
+    void HandleInput()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        // Rotate the car based on the horizontal input
+        transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
+
+        // Accelerate, decelerate, or brake the car based on the vertical input
+        if (verticalInput > 0)
+        {
+            Accelerate();
+        }
+        else if (verticalInput < 0)
+        {
+            Decelerate();
+        }
+
+        // Brake when the spacebar is pressed
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Brake();
+        }
     }
 
-    private void ApplyBreaking() {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
+    void Accelerate()
+    {
+        if (currentSpeed < maxSpeed)
+        {
+            currentSpeed += acceleration * Time.deltaTime;
+        }
+        else
+        {
+            currentSpeed = maxSpeed;
+        }
     }
 
-    private void HandleSteering() {
-        currentSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
+    void Decelerate()
+    {
+        if (currentSpeed > 0)
+        {
+            currentSpeed -= deceleration * Time.deltaTime;
+        }
+        else
+        {
+            currentSpeed = 0;
+        }
     }
 
-    private void UpdateWheels() {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+    void Brake()
+    {
+        // Apply braking force to slow down the car
+        currentSpeed -= brakeForce * Time.deltaTime;
+
+        // Ensure the car doesn't go backward when braking
+        currentSpeed = Mathf.Max(0, currentSpeed);
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform) {
-        Vector3 pos;
-        Quaternion rot; 
-        wheelCollider.GetWorldPose(out pos, out rot);
-        wheelTransform.rotation = rot;
-        wheelTransform.position = pos;
+    void MoveCar()
+    {
+        // Move the car forward based on the current speed
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
     }
 
     public void OnTriggerEnter(Collider other){
