@@ -6,7 +6,7 @@ using UnityEngine;
 public class RoadSpawner : MonoBehaviour
 {
     public List<GameObject> roads;
-    public float offset = 200f;
+    public float offset = 150f;
 
     // Start is called before the first frame update
     void Start()
