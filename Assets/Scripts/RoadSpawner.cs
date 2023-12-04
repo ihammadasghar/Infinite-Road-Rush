@@ -22,6 +22,7 @@ public class RoadSpawner : MonoBehaviour
         roads.Remove(moveRoad);
         float newX = roads[roads.Count -1].transform.position.x - offset;
         moveRoad.transform.position = new Vector3(newX, 0, 0);
+        moveRoad.gameObject.GetComponent<ObstacleGenerator>().ReSpawnObstacles();
         roads.Add(moveRoad);
     }
 }
