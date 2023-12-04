@@ -70,7 +70,7 @@ class ProbabilityFunctions
     // The max speed changes depending on time
     // Bias towards higher speed using the inverse of geometric distribution
     public static int getEnemySpeed(int maxSpeed, int secondsPassed){
-        int intervalLen = 20;
+        int intervalLen = 5;
         int maxDependingOnTime = (int)(maxSpeed * ((double)secondsPassed/(double)maxDifficultySeconds));
         return maxDependingOnTime - pickDiscreteNumber(intervalLen);
     }

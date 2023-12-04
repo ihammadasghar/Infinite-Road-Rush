@@ -38,6 +38,7 @@ public class SpawnGameObjects : MonoBehaviour {
 		if ((chaseTarget != null) && (clone.gameObject.GetComponent<Chaser> () != null))
 		{
 			clone.gameObject.GetComponent<Chaser>().SetTarget(chaseTarget);
+			clone.gameObject.GetComponent<Chaser>().SetSpeed(ProbabilityFunctions.getEnemySpeed(50, 30));
 		}
 	}
 }
