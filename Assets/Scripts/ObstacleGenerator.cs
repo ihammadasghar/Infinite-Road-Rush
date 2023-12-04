@@ -26,7 +26,7 @@ public class ObstacleGenerator: MonoBehaviour {
         for (int i = 0; i < obstaclesToSpawn; i++)
         {
             // Choose a random prefab from the array
-            GameObject selectedPrefab = obstacles[ProbabilityFunctions.pickDiscreteNumber(3)];
+            GameObject selectedPrefab = obstacles[ProbabilityFunctions.pickDiscreteNumber(obstacles.Count)];
 
             // Generate a random position within the spawnRadius
             Vector3 randomPosition = new Vector3(
