@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8391673323325525873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2775885054829685927}
+  m_Layer: 0
+  m_Name: RampStraight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2775885054829685927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8391673323325525873}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 118.11, y: 1.2461, z: 3.4911}
+  m_LocalScale: {x: 1, y: 0.6, z: 1.225}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5946439720991457231}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &7331123416955432099
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2775885054829685927}
+    m_Modifications:
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3125
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 103.18211
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.05000019
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.889168
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979104596254347084, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+      propertyPath: m_Name
+      value: Ramp
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+--- !u!4 &5946439720991457231 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3979104596254184300, guid: 4995484a95d5e1642841ecfefa655bcc, type: 3}
+  m_PrefabInstance: {fileID: 7331123416955432099}
+  m_PrefabAsset: {fileID: 0}
