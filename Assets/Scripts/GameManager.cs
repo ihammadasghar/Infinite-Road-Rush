@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager gm;
+	public static int secondsPassed = 0;
 
 	[Tooltip("If not set, the player will default to the gameObject tagged as Player.")]
 	public GameObject player;
@@ -18,10 +19,12 @@ public class GameManager : MonoBehaviour {
 	public int bombs = 1;
 	public bool canBeatLevel = false;
 	public int beatLevelScore=0;
+	public static int maxDifficultySeconds = 120;
 
 	public GameObject mainCanvas;
 	public Text mainScoreDisplay;
 	public Text healthDisplay;
+	public Text secondsDisplay;
 	public GameObject gameOverCanvas;
 	public Text gameOverScoreDisplay;
 
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour {
 	[Tooltip("Only need to set if canBeatLevel is set to true.")]
 	public AudioClip beatLevelSFX;
 
+	private float timer;
 	private Health playerHealth;
 
 	void Start () {
@@ -56,6 +60,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
+		timer += Time.deltaTime;
+   		secondsPassed = (int)(timer % 60);
+		secondsDisplay.text = secondsPassed.ToString();
 		switch (gameState)
 		{
 			case gameStates.Playing:

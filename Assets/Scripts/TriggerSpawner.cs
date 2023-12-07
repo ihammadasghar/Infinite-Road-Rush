@@ -11,7 +11,7 @@ public class TriggerSpawner : MonoBehaviour
         
         if(!enter){
             enter = true;
-            spawnManager.SpawnTriggerEntered();
+            spawnManager.SpawnTriggerEntered(other);
         }
         
     }

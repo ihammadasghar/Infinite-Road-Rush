@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -18,7 +19,9 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-    public void SpawnTriggerEntered(){
-        roadSpawner.MoveRoad();
+    public void SpawnTriggerEntered(Collider other){
+        if(other.gameObject.tag == "Player"){
+            roadSpawner.MoveRoad();
+        }
     }
 }

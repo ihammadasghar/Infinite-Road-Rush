@@ -17,11 +17,11 @@ public class DayNightCycle : MonoBehaviour
     {
         while (true)
         {
-            if(!isNight && ProbabilityFunctions.shouldChangeToNight(30)){
+            if(!isNight && ProbabilityFunctions.shouldChangeToNight(GameManager.secondsPassed)){
                 isNight = true;
                 yield return StartCoroutine(RotateXAxis(-90f));
             }
-            if(isNight && !ProbabilityFunctions.shouldChangeToNight(30)){
+            if(isNight && !ProbabilityFunctions.shouldChangeToNight(GameManager.secondsPassed)){
                 isNight = false;
                 yield return StartCoroutine(RotateXAxis(90f));
             }
