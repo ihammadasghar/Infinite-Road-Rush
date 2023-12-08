@@ -41,6 +41,7 @@ public class ObstacleGenerator: MonoBehaviour {
 
             // Instantiate the selected prefab at the random position
             GameObject spawnedObstacle = Instantiate(selectedPrefab, randomPosition, Quaternion.identity) as GameObject;
+            spawnedObstacle.transform.parent = transform;
 			spawnedObstacles.Add(spawnedObstacle);
         }
     }
