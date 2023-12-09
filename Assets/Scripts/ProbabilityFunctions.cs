@@ -5,7 +5,7 @@ class ProbabilityFunctions
     static Random random = new Random();
 
     public static int getRandomAmountOfObstacles(int maxObstacles, int len, int secondsPassed){
-        int upperLimit = Math.Max(len, maxObstacles * secondsPassed/GameManager.maxDifficultySeconds);
+        int upperLimit = Math.Max(len, (maxObstacles+1) * Math.Min(1, secondsPassed/GameManager.maxDifficultySeconds));
         int lowerLimit = upperLimit - len;
 
         // Create a Random object
@@ -29,7 +29,7 @@ class ProbabilityFunctions
         double randomValue = random.NextDouble();
 
         // Calculate the probability based on secondsPassed
-        double probability = Math.Min(1.0, secondsPassed / (double)GameManager.maxDifficultySeconds);
+        double probability = Math.Min(1.0, Math.Min(1, secondsPassed/(double)GameManager.maxDifficultySeconds));
 
         // Check if the random value is less than the calculated probability
         return randomValue < probability;
@@ -81,7 +81,7 @@ class ProbabilityFunctions
     // The max speed changes depending on time
     // Bias towards higher speed using the inverse of geometric distribution
     public static float getEnemySpeed(int len, int maxSpeed, int secondsPassed, double biasStrength = 3.0){
-        int upperLimit = Math.Max(len, (int)(maxSpeed * ((double)secondsPassed/(double)GameManager.maxDifficultySeconds)));
+        int upperLimit = Math.Max(len, (int)(maxSpeed * Math.Min(1, (double)secondsPassed/(double)GameManager.maxDifficultySeconds)));
         int lowerLimit = upperLimit - len;
 
         double m = (upperLimit + lowerLimit)/2.0;
