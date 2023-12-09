@@ -7,6 +7,8 @@ public class RoadSpawner : MonoBehaviour
 {
     public List<GameObject> roads;
     public float offset = 150f;
+    public Transform player;
+    public float spawnDistance = 50f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +17,15 @@ public class RoadSpawner : MonoBehaviour
             roads = roads.OrderBy(r=>-(r.transform.position.x)).ToList();
         }
         
+    }
+
+    void Update()
+    {
+        // Check the player's position and spawn a new road segment if needed
+        if (player.position.x < roads[1].transform.position.x - spawnDistance)
+        {
+            MoveRoad();
+        }
     }
 
     public void MoveRoad(){
