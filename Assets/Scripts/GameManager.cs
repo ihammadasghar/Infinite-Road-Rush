@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update () {
 		timer += Time.deltaTime;
-   		secondsPassed = (int)(timer % 60);
+   		secondsPassed = (int)(timer);
 		secondsDisplay.text = secondsPassed.ToString();
 		switch (gameState)
 		{

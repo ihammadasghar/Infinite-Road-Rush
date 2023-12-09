@@ -467,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7514724142118017493, guid: 8a8f57edf3523624eb9f886833e8e97a, type: 3}
       propertyPath: m_Mass
-      value: 1000
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24b64d8c1d12f5c45bf4fdf47b9848fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 5
+  damageAmount: 1
   damageOnTrigger: 0
   damageOnCollision: 1
   continuousDamage: 0
@@ -577,9 +577,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 50
-  speedIntervalLength: 10
-  minDist: 1
+  maxSpeed: 60
+  speedIntervalLength: 20
+  minDist: 0
   target: {fileID: 0}
 --- !u!4 &7637840519296780383 stripped
 Transform:
