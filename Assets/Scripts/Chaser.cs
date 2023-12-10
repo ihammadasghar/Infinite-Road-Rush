@@ -6,8 +6,6 @@ using System.Collections;
 public class Chaser : MonoBehaviour {
 	
 	public float speed = 0;
-	public int maxSpeed = 50;
-	public int speedIntervalLength = 10;
 	public float minDist = 1f;
 	public Transform target;
 
@@ -24,7 +22,7 @@ public class Chaser : MonoBehaviour {
 		}
 
 		if(speed == 0){
-			speed = ProbabilityFunctions.getEnemySpeed(speedIntervalLength, maxSpeed, GameManager.secondsPassed);
+			speed = ProbabilityFunctions.getEnemySpeed(GameManager.enemySpeedUpperLimit, GameManager.enemySpeedIntervalLen, GameManager.enemySpeedNormalBias);
 		}
 	}
 	

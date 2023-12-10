@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager gm;
-	public static int secondsPassed = 0;
+	public static double secondsPassed = 0;
 
 	[Tooltip("If not set, the player will default to the gameObject tagged as Player.")]
 	public GameObject player;
@@ -19,12 +20,16 @@ public class GameManager : MonoBehaviour {
 	public int bombs = 1;
 	public bool canBeatLevel = false;
 	public int beatLevelScore=0;
-	public static int maxDifficultySeconds = 120;
+	public static double maxDifficultySeconds = 120;
 
 	public GameObject mainCanvas;
 	public Text mainScoreDisplay;
 	public Text healthDisplay;
 	public Text secondsDisplay;
+	public Text difficultyDisplay;
+	public Text nightProbabilityDisplay;
+	public Text intervalOfObstaclesDisplay;
+	public Text intervalOfEnemySpeedDisplay;
 	public GameObject gameOverCanvas;
 	public Text gameOverScoreDisplay;
 
@@ -36,9 +41,16 @@ public class GameManager : MonoBehaviour {
 
 	[Tooltip("Only need to set if canBeatLevel is set to true.")]
 	public AudioClip beatLevelSFX;
-
-	private float timer;
 	private Health playerHealth;
+	public static double obstaclePositionNormalBias = 3.0;
+	public static int maxObstacles = 50;
+	public static int obstaclesIntervalLen = 10;
+	public static int obstaclesUpperLimit;
+	public static double enemySpeedNormalBias = 3.0;
+	public static int maxEnemySpeed = 50;
+	public static int enemySpeedIntervalLen = 20;
+	public static int enemySpeedUpperLimit;
+	public static double nightProbability;
 
 	void Start () {
 		if (gm == null) 
@@ -60,9 +72,19 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
-		timer += Time.deltaTime;
-   		secondsPassed = (int)(timer);
-		secondsDisplay.text = secondsPassed.ToString();
+   		secondsPassed += Time.deltaTime;
+		secondsDisplay.text = ((int)secondsPassed).ToString();
+
+		nightProbability = Math.Min(1.0, secondsPassed/maxDifficultySeconds);
+		difficultyDisplay.text = Math.Round(nightProbability, 2).ToString();
+		nightProbabilityDisplay.text = difficultyDisplay.text;
+
+		obstaclesUpperLimit = (int)Math.Max(obstaclesIntervalLen, (maxObstacles+1) * Math.Min(1, secondsPassed/maxDifficultySeconds));
+		intervalOfObstaclesDisplay.text = (obstaclesUpperLimit - obstaclesIntervalLen) + ", " + obstaclesUpperLimit;
+
+		enemySpeedUpperLimit = (int)Math.Max(enemySpeedIntervalLen, (maxEnemySpeed+1) * Math.Min(1, secondsPassed/maxDifficultySeconds));
+		intervalOfEnemySpeedDisplay.text = (enemySpeedUpperLimit - enemySpeedIntervalLen) + ", " + enemySpeedUpperLimit;
+
 		switch (gameState)
 		{
 			case gameStates.Playing:

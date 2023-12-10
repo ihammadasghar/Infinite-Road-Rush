@@ -7,9 +7,6 @@ public class ObstacleGenerator: MonoBehaviour {
 	
 	public List<GameObject> obstacles = null;
 	private List<GameObject> spawnedObstacles = new List<GameObject>();
-	public int maxObstacles = 50;
-    public int amountIntervalLength = 10;
-    public double middleSpawnBias = 3.0;
 
 	// Use this for initialization
 	void Start () 
@@ -25,7 +22,7 @@ public class ObstacleGenerator: MonoBehaviour {
             return;
         }
 
-        int obstaclesToSpawn = ProbabilityFunctions.getRandomAmountOfObstacles(maxObstacles, amountIntervalLength, GameManager.secondsPassed);
+        int obstaclesToSpawn = ProbabilityFunctions.getRandomAmountOfObstacles(GameManager.obstaclesUpperLimit, GameManager.obstaclesIntervalLen);
 
         for (int i = 0; i < obstaclesToSpawn; i++)
         {
@@ -34,9 +31,9 @@ public class ObstacleGenerator: MonoBehaviour {
 
             // Generate a random position within the spawnRadius
             Vector3 randomPosition = new Vector3(
-                transform.position.x + ProbabilityFunctions.getRandomCordinate(-100, 100),
+                transform.position.x + ProbabilityFunctions.getRandomCordinate(-100, 100, 1.0),
                 transform.position.y,
-                transform.position.z + ProbabilityFunctions.getRandomCordinate(-30, 30, middleSpawnBias)
+                transform.position.z + ProbabilityFunctions.getRandomCordinate(-25, 25, GameManager.obstaclePositionNormalBias)
             );
 
             // Instantiate the selected prefab at the random position
