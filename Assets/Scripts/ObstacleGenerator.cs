@@ -33,7 +33,7 @@ public class ObstacleGenerator: MonoBehaviour {
             Vector3 randomPosition = new Vector3(
                 transform.position.x + ProbabilityFunctions.getRandomCordinate(-100, 100, 1.0),
                 transform.position.y,
-                transform.position.z + ProbabilityFunctions.getRandomCordinate(-25, 25, GameManager.obstaclePositionNormalBias)
+                transform.position.z + ProbabilityFunctions.getRandomCordinate(-20, 20, GameManager.obstaclePositionNormalBias)
             );
 
             // Instantiate the selected prefab at the random position

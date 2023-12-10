@@ -47,7 +47,7 @@ class ProbabilityFunctions
         double randomValue = normal(mean, stdDev);
 
         // Clip the result to ensure it falls within the specified interval
-        double clippedValue = Math.Max(low, Math.Min(high - 1, randomValue));
+        double clippedValue = Math.Max(low, Math.Min(high, randomValue));
 
         // Round to the nearest integer
         return (int)Math.Round(clippedValue);
@@ -65,7 +65,7 @@ class ProbabilityFunctions
 
         // Generate a random number with a geometric distribution
         double p = 0.5;
-        int randomValue = (int)geometric(p);
+        int randomValue = geometric(p);
 
         // Clip the result to ensure it falls within the specified range
         return Math.Min(x - 1, randomValue);
@@ -79,7 +79,7 @@ class ProbabilityFunctions
         double m = (upperLimit + lowerLimit)/2.0;
 
         // Calculate the standard deviation based on the bias strength
-        double stdDev = (upperLimit - lowerLimit) / biasStrength;
+        double stdDev = len / biasStrength;
 
         float randomValue = (float)normal(m, stdDev);
 
@@ -96,7 +96,7 @@ class ProbabilityFunctions
         return mean + stdDev * z;
     }
 
-    static double geometric(double p){
-        return Math.Floor(Math.Log(random.NextDouble()) / Math.Log(1.0 - p));
+    static int geometric(double p){
+        return (int)Math.Floor(Math.Log(random.NextDouble()) / Math.Log(1.0 - p));
     }
 }
