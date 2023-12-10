@@ -4,8 +4,7 @@ class ProbabilityFunctions
 {
     static Random random = new Random();
 
-    public static int getRandomAmountOfObstacles(int maxObstacles, int len, int secondsPassed){
-        int upperLimit = Math.Max(len, (maxObstacles+1) * Math.Min(1, secondsPassed/GameManager.maxDifficultySeconds));
+    public static int getRandomAmountOfObstacles(int upperLimit, int len){
         int lowerLimit = upperLimit - len;
 
         // Create a Random object
@@ -20,19 +19,13 @@ class ProbabilityFunctions
 
     //  the probability of returning True is determined by a linear function of the form probability = seconds_passed / max_seconds, 
     //  where max_seconds is a parameter defining the maximum number of seconds for the probability to reach 1.0
-    public static bool shouldChangeToNight(int secondsPassed)
+    public static bool shouldChangeToNight(double nightProbability)
     {
-        // Ensure that secondsPassed is non-negative
-        secondsPassed = Math.Max(0, secondsPassed);
-
         // Generate a random value between 0 and 1
         double randomValue = random.NextDouble();
 
-        // Calculate the probability based on secondsPassed
-        double probability = Math.Min(1.0, Math.Min(1, secondsPassed/(double)GameManager.maxDifficultySeconds));
-
         // Check if the random value is less than the calculated probability
-        return randomValue < probability;
+        return randomValue < nightProbability;
     }
 
     // This function has a bias towards generating cordinates in the middle of the interval
@@ -80,8 +73,7 @@ class ProbabilityFunctions
 
     // The max speed changes depending on time
     // Bias towards higher speed using the inverse of geometric distribution
-    public static float getEnemySpeed(int len, int maxSpeed, int secondsPassed, double biasStrength = 3.0){
-        int upperLimit = Math.Max(len, (int)(maxSpeed * Math.Min(1, (double)secondsPassed/(double)GameManager.maxDifficultySeconds)));
+    public static float getEnemySpeed(int upperLimit, int len, double biasStrength = 3.0){
         int lowerLimit = upperLimit - len;
 
         double m = (upperLimit + lowerLimit)/2.0;

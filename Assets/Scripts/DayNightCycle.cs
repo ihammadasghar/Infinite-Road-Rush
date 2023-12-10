@@ -24,11 +24,11 @@ public class DayNightCycle : MonoBehaviour
             // Wait for the specified delay
             yield return new WaitForSeconds(delayBetweenChange);
 
-            if(!isNight && ProbabilityFunctions.shouldChangeToNight(60)){
+            if(!isNight && ProbabilityFunctions.shouldChangeToNight(GameManager.nightProbability)){
                 isNight = true;
                 yield return StartCoroutine(transition(-90f, maxHeadLightIntensity));
             }
-            if(isNight && !ProbabilityFunctions.shouldChangeToNight(60)){
+            if(isNight && !ProbabilityFunctions.shouldChangeToNight(GameManager.nightProbability)){
                 isNight = false;
                 yield return StartCoroutine(transition(90f, -maxHeadLightIntensity));
             }
