@@ -22,7 +22,7 @@ public class RoadSpawner : MonoBehaviour
     void Update()
     {
         // Check the player's position and spawn a new road segment if needed
-        if (player.position.x < roads[1].transform.position.x - spawnDistance)
+        if (player != null && player.position.x < roads[1].transform.position.x - spawnDistance)
         {
             MoveRoad();
         }

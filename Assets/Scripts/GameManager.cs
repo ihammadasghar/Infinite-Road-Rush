@@ -53,6 +53,20 @@ public class GameManager : MonoBehaviour {
 	public static double nightProbability;
 
 	void Start () {
+		secondsPassed = 0;
+		gameState = gameStates.Playing;
+		score=0;
+		health=100;
+		bombs = 1;
+		canBeatLevel = false;
+		beatLevelScore=0;
+		maxDifficultySeconds = 120;
+		obstaclePositionNormalBias = 3.0;
+		maxObstacles = 50;
+		obstaclesIntervalLen = 10;
+		enemySpeedNormalBias = 3.0;
+		maxEnemySpeed = 50;
+		enemySpeedIntervalLen = 20;
 		if (gm == null) 
 			gm = gameObject.GetComponent<GameManager>();
 
@@ -72,6 +86,14 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
+		if (Input.GetKeyDown("space") && gameState == gameStates.GameOver)
+		{
+			Application.LoadLevel("Level1");
+		}
+		if (Input.GetKeyDown(KeyCode.Q) && gameState == gameStates.GameOver)
+		{
+			Application.Quit();
+		}
    		secondsPassed += Time.deltaTime;
 		secondsDisplay.text = ((int)secondsPassed).ToString();
 

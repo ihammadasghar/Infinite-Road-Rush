@@ -577,8 +577,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  maxSpeed: 60
-  speedIntervalLength: 20
   minDist: 0
   target: {fileID: 0}
 --- !u!4 &7637840519296780383 stripped
