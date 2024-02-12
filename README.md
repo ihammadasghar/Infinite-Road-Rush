@@ -5,12 +5,12 @@ This game was developed with the objective gaining experience to programming wit
 
 - Details about the random components: [Presentation](https://docs.google.com/presentation/d/18Xhaw-sxQWpRqBYE008kqUH7GsJyFA8b/edit?usp=sharing&ouid=101477071156766387986&rtpof=true&sd=true)
 
+### Try it out
+- Download `Infinite-Road-Rush-Final-Build.zip`
+
 ![gameplay1](https://github.com/ihammadasghar/Infinite-Road-Rush/blob/update-readme/screenshots/gameplay1.png)
 ![gameplay2](https://github.com/ihammadasghar/Infinite-Road-Rush/blob/update-readme/screenshots/gameplay2.png)
 ![game-ended](https://github.com/ihammadasghar/Infinite-Road-Rush/blob/update-readme/screenshots/game-ended.png)
-
-### Try it out
-- Clone the repository and navigate to `builds\ObstacleRace.exe`
 
 ### How to setup for devs
 - Clone the repository: `git clone https://github.com/ihammadasghar/Infinite-Road-Rush.git`
